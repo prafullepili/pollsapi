@@ -6,7 +6,7 @@ from .models import Poll, Choice, Vote
 class VoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vote
-        fields = '__all__'
+        fields = "__all__"
 
 
 class ChoiceSerializer(serializers.ModelSerializer):

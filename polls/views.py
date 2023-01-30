@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 
-from .models import Poll
+from .models import Poll, Choice
 
 
 def polls_list(request):
@@ -13,11 +13,14 @@ def polls_list(request):
     data = {"results": []}
     for poll in polls:
         data["results"].append({
+            'id': poll.pk,
             "question": poll.question,
             "username": poll.created_by.username,
             "first Name": poll.created_by.first_name,
             "last Name": poll.created_by.last_name,
             "pub_date": poll.pub_date,
+            "choices": list(Choice.objects.filter(poll__exact=poll).values()),
+            "votes": list(poll.vote_set.values())
         })
     return JsonResponse(data)
 
@@ -30,4 +33,7 @@ def polls_detail(request, pk):
         "pub_date": poll.pub_date,
         "first_name": poll.created_by.first_name,
         "last_name": poll.created_by.last_name,
+        "Choices": list(poll.choices.values()),
+        "votes": list(poll.vote_set.values())
     }}
+    return JsonResponse(data)
