@@ -8,7 +8,7 @@ class Poll(models.Model):
     pub_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.question
+        return str(self.question)
 
 
 class Choice(models.Model):
@@ -17,7 +17,7 @@ class Choice(models.Model):
     choice_text = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.choice_text
+        return str(self.choice_text)
 
 
 class Vote(models.Model):
