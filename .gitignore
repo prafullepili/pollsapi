@@ -1,0 +1,3 @@
+# Byte-compiled / optimized / DLL files
+./polls/__pycache__/
+*.pyc
